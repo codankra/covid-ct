@@ -14,7 +14,6 @@ import {
   Button,
 } from "carbon-components-react";
 import "./EntryForm.scss";
-// /import formAPI from "../../api/formAPI";
 
 const SelfInput = (props) => {
   const [testStatus, setTestStatus] = useState("No");
@@ -61,9 +60,9 @@ const SelfInput = (props) => {
     document.getElementById("submitID").disabled = true;
     let selectedValues = {
       fullname: document.getElementById("fullname").value,
-      employee_id: document.getElementById("cwid").value,
+      cwid: document.getElementById("cwid").value,
       location: document.getElementById("oncampus-when").value,
-      department: document.getElementById("department").value,
+      status: document.getElementById("department").value,
       testStatus: testStatus,
       additional: document.getElementById("additional").value,
       testInfo: "",
@@ -82,7 +81,9 @@ const SelfInput = (props) => {
       selectedValues.exposure = exposureStatus;
     }
     console.log(selectedValues);
-    let res = ""; //await formAPI.submitEntryForm(selectedValues);
+    let res = props.dataMemory.push(selectedValues);
+    console.log(props);
+    props.setDataMemory(res);
     console.log(res);
     props.completeSubmit(true);
   };

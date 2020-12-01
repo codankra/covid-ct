@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import SelfInput from "./SelfInput";
-//import HRInput from "./HRInput";
-import { Toggle } from "carbon-components-react";
 import "./EntryForm.scss";
 
-const EntryForm = () => {
-  const [toggled, setToggled] = useState(false);
+const EntryForm = (props) => {
   const [submitted, setSubmitted] = useState(false);
+  console.log(props);
   return (
     <div>
       <div className="EntryForm">
@@ -24,7 +22,11 @@ const EntryForm = () => {
             <h1 className="FormHeader">
               Stevens COVID-19 Self Check-In Questionairre
             </h1>
-            <SelfInput completeSubmit={setSubmitted} />
+            <SelfInput
+              dataMemory={props.dataMemory}
+              setDataMemory={props.setDataMemory}
+              completeSubmit={setSubmitted}
+            />
           </div>
         )}
       </div>
