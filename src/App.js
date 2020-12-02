@@ -4,7 +4,20 @@ import Form from "./components/EntryForm";
 import Info from "./components/InfoPage";
 import Admin from "./components/AdminPage";
 
-const initialData = [];
+const initialData = [
+  {
+    'additional': "Asthmatic",
+    'cwid': "123-45-6789",
+    'exposure': "No",
+    'fullname': "Annie Pearson",
+    'location': "11/30/2020",
+    'status': "Student",
+    'symptoms': ["Cold/Cough"],
+    'testDate': "",
+    'testInfo': "Antibody",
+    'testStatus': "wait"
+  }
+];
 
 function App() {
   const [dataMemory, setDataMemory] = useState(initialData); //used as persistent memory for for dummy data and form entry data
