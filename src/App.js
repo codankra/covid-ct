@@ -47,7 +47,10 @@ function App() {
       </button>
       <button
         onClick={() =>
-          setCurrentPage(<Info adminVerifiedMemory={adminVerifiedMemory} />)
+          setCurrentPage(<Info 
+            dataMemory={dataMemory}
+            adminVerifiedMemory={adminVerifiedMemory}
+            setAdminVerifiedMemory={setAdminVerifiedMemory} />)
         }
       >
         Info Page

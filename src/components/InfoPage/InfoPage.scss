@@ -8,8 +8,31 @@
     box-shadow: 0 2px 4px gray;
   }
   
-  .FormHeader {
+  .PageHeader {
     font-size: 2.25rem;
     margin-bottom: 20px;
   }
+
+  .SectionHeader {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+
+  .StatTitle {
+    font-size: 1.25rem;
+  }
+
+  .StatNumber {
+    font-size: 3rem;
+  }
   
+  .column {
+    float: left;
+    width: 33.33%;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
