@@ -39,3 +39,52 @@
 .bx--label {
   text-align: left;
 }
+
+.HeaderTitle {
+  font-size: 4rem;
+  color: white;
+}
+
+.NavBar {
+  width: 100%;
+  position: absolute;
+  top: 250px;
+  left: 0;
+  text-align: center;
+}
+
+.NavBar ul {
+  list-style-type: none;
+}
+
+.NavBar ul li {
+  display: inline;
+}
+
+.NavBar ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.5rem;
+  height: 10px;
+  padding: 20px 60px 20px 60px;
+  transition: opacity 0.2s;
+}
+
+.NavBar ul li a:hover {
+  background-color: #b4183d;
+}
+
+header {
+  width: 100%;
+  padding: 100px 0;
+  position: relative;
+}
+
+.HeaderSection {
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.HeaderSection h1 {
+  font-size: 6rem;
+}
