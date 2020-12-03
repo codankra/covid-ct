@@ -82,9 +82,8 @@ const SelfInput = (props) => {
     }
     console.log(selectedValues);
     let res = props.dataMemory.push(selectedValues);
-    console.log(props);
     props.setDataMemory(res);
-    console.log(res);
+    document.getElementById("submitLogin").disabled = false;
     props.completeSubmit(true);
   };
   return (
@@ -286,10 +285,10 @@ const SelfInput = (props) => {
       </FormGroup>
       {/* SUBMIT */}
       <Button
-        kind="primary"
+        kind="secondary"
         tabIndex={0}
         type="submit"
-        className="SubmitSelfInput"
+        className="SubmitBtn"
         id="submitID"
       >
         Submit
