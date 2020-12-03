@@ -108,39 +108,60 @@ function App() {
 
   return (
     <div className="App">
-      <button
-        onClick={() =>
-          setCurrentPage(
-            <CTForm
-              className="OverallForm"
-              dataMemory={dataMemory}
-              setDataMemory={setDataMemory}
-            />
-          )
-        }
-      >
-        Form Page
-      </button>
-      <button
-        onClick={() =>
-          setCurrentPage(
-            <Info
-              dataMemory={dataMemory}
-              adminVerifiedMemory={adminVerifiedMemory}
-              setAdminVerifiedMemory={setAdminVerifiedMemory}
-            />
-          )
-        }
-      >
-        Info Page
-      </button>
-      <button
-        onClick={() =>
-          setCurrentPage(loggedIn ? adminLoggedIn : adminLoginForm)
-        }
-      >
-        Admin Page
-      </button>
+      <header>
+        <div className="HeaderSection">
+          <h1 className="HeaderTitle">COVID-CT</h1>
+        </div>
+        <nav className="NavBar">
+          <ul className="NavEntry">
+            <li className="NavList">
+              <a
+                href="#form"
+                className="NavButton"
+                onClick={() =>
+                  setCurrentPage(
+                    <CTForm
+                      className="OverallForm"
+                      dataMemory={dataMemory}
+                      setDataMemory={setDataMemory}
+                    />
+                  )
+                }
+              >
+                Form Page
+              </a>
+            </li>
+            <li className="NavList">
+              <a
+                href="#info"
+                className="NavButton"
+                onClick={() =>
+                  setCurrentPage(
+                    <Info
+                      className="OverallForm"
+                      dataMemory={dataMemory}
+                      setDataMemory={setDataMemory}
+                    />
+                  )
+                }
+              >
+                Info Page
+              </a>
+            </li>
+            <li className="NavList">
+              <a
+                href="#admin"
+                className="NavButton"
+                onClick={() =>
+                  setCurrentPage(loggedIn ? adminLoggedIn : adminLoginForm)
+                }
+              >
+                Admin Page
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
       {currentPage}
     </div>
   );
