@@ -9,6 +9,7 @@ const initialData = [
   {
     additional: "Asthmatic",
     cwid: "123-45-6789",
+    id: "123-45-6789",
     exposure: "No",
     fullname: "Annie Pearson",
     location: "11/30/2020",
@@ -54,8 +55,8 @@ function App() {
     sleep(800).then(() => {
       document.getElementById("submitLogin").disabled = false;
       if (
-        selectedValues.userId == "admin" &&
-        selectedValues.password == "covid19"
+        selectedValues.userId === "admin" &&
+        selectedValues.password === "covid19"
       ) {
         setLoggedIn(true);
         setCurrentPage(adminLoggedIn);
@@ -118,7 +119,7 @@ function App() {
               <a
                 href="#form"
                 className={
-                  lastClicked == "form"
+                  lastClicked === "form"
                     ? "NavButton ActiveNavButton"
                     : "NavButton"
                 }
@@ -140,7 +141,7 @@ function App() {
               <a
                 href="#info"
                 className={
-                  lastClicked == "info"
+                  lastClicked === "info"
                     ? "NavButton ActiveNavButton"
                     : "NavButton"
                 }
@@ -162,7 +163,7 @@ function App() {
               <a
                 href="#admin"
                 className={
-                  lastClicked == "admin"
+                  lastClicked === "admin"
                     ? "NavButton ActiveNavButton"
                     : "NavButton"
                 }

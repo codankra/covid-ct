@@ -7,6 +7,15 @@ import {
     TableHeader,
     TableBody,
     TableCell,
+    TableContainer,
+    TableToolbar,
+    TableToolbarContent,
+    TableToolbarAction,
+    TableToolbarSearch,
+    TableBatchActions,
+    TableBatchAction,
+    TableSelectAll,
+    TableSelectRow
   } from 'carbon-components-react';
 //import "./ReportTable.scss";
 
@@ -26,7 +35,7 @@ import {
 
 const headers = [
     {
-        key: 'fullName',
+        key: 'fullname',
         header:'Name'
     },
     {
@@ -64,38 +73,73 @@ const headers = [
     {
         key: 'exposure',
         header:'Exposure'
-    },
-
+    }
 ]
 
 const ReportTable = (props) => {
-  return (
+    console.log(props);
+    return (
     <div>
       <div className="ReportTable">
         <DataTable rows={props.data} headers={headers}>
-            {({ rows, headers, getTableProps, getHeaderProps, getRowProps }) => (
+            {({
+                rows,
+                headers,
+                getHeaderProps,
+                getRowProps,
+                getSelectionProps,
+                getToolbarProps,
+                getBatchActionProps,
+                onInputChange,
+                selectedRows,
+                getTableProps,
+                getTableContainerProps
+            }) => (
+                <TableContainer
+                title="DataTable"
+                description="With batch actions"
+                {...getTableContainerProps()}>
+                <TableToolbar {...getToolbarProps()}>
+                    <TableBatchActions {...getBatchActionProps()}>
+                        <TableBatchAction
+                            tabIndex={getBatchActionProps().shouldShowBatchActions ? 0 : -1}
+                            onClick={props.setVerify(selectedRows)}>
+                            Verify
+                        </TableBatchAction>
+                    </TableBatchActions>
+                    <TableToolbarContent>
+                        <TableToolbarSearch
+                            defaultExpanded
+                            tabIndex={getBatchActionProps().shouldShowBatchActions ? -1 : 0}
+                            onChange={onInputChange}
+                        />
+                    </TableToolbarContent>
+                </TableToolbar>
                 <Table {...getTableProps()}>
-                <TableHead>
+                    <TableHead>
                     <TableRow>
-                        {headers.map((header) => (
-                            <TableHeader {...getHeaderProps({ header })}>
+                        <TableSelectAll {...getSelectionProps()} />
+                        {headers.map((header, i) => (
+                        <TableHeader key={i} {...getHeaderProps({ header })}>
                             {header.header}
-                            </TableHeader>
+                        </TableHeader>
                         ))}
                     </TableRow>
-                </TableHead>
-                <TableBody>
-                    {rows.map((row) => (
-                        <TableRow {...getRowProps({ row })}>
-                            {row.cells.map((cell) => (
+                    </TableHead>
+                    <TableBody>
+                    {rows.map((row, i) => (
+                        <TableRow key={i} {...getRowProps({ row })}>
+                        <TableSelectRow {...getSelectionProps({ row })} />
+                        {row.cells.map((cell) => (
                             <TableCell key={cell.id}>{cell.value}</TableCell>
-                            ))}
+                        ))}
                         </TableRow>
                     ))}
-                </TableBody>
+                    </TableBody>
                 </Table>
+                </TableContainer>
             )}
-        </DataTable>
+            </DataTable>
       </div>
     </div>
   );

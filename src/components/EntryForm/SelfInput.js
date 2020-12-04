@@ -61,6 +61,7 @@ const SelfInput = (props) => {
     let selectedValues = {
       fullname: document.getElementById("fullname").value,
       cwid: document.getElementById("cwid").value,
+      id: document.getElementById("cwid").value,
       location: document.getElementById("oncampus-when").value,
       status: document.getElementById("department").value,
       testStatus: testStatus,

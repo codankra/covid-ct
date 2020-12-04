@@ -9,7 +9,7 @@ const AdminPage = (props) => {
             <h1 className="FormHeader">
               Test Admin Page
             </h1>
-            <ReportTable data={props.dataMemory} />
+            <ReportTable setVerify={props.setAdminVerifiedMemory} data={props.dataMemory} />
       </div>
     </div>
   );

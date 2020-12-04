@@ -11,7 +11,7 @@ const InfoPage = (props) => {
             </h1>
             <hr/>
             <br/>
-            <div class="row">
+            <div className="row">
                 <div class="column">
                     <h2 className="StatTitle">Total Stevens Cases</h2>
                     <h2 className="StatNumber">124</h2>
@@ -43,7 +43,7 @@ const InfoPage = (props) => {
             <br/>
             <br/>
             <h2 className="SectionHeader">Verified Cases On-Campus</h2>
-            <ReportTable data={props.dataMemory} />
+            <ReportTable setVerify={undefined} data={props.dataMemory} />
       </div>
     </div>
   );
