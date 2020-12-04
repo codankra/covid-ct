@@ -20,7 +20,7 @@ const EntryForm = (props) => {
         ) : (
           <div>
             <h1 className="FormHeader">
-              Stevens COVID-19 Self Check-In Questionairre
+              Stevens COVID-19 Self Check-In Questionnaire
             </h1>
             <SelfInput
               dataMemory={props.dataMemory}
