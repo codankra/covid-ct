@@ -24,7 +24,7 @@ function App() {
   const [dataMemory, setDataMemory] = useState(initialData); //used as persistent memory for for dummy data and form entry data
   const [adminVerifiedMemory, setAdminVerifiedMemory] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
-
+  const [lastClicked, setLastClicked] = useState("form");
   const [currentPage, setCurrentPage] = useState(
     <CTForm
       className="OverallForm"
@@ -91,7 +91,7 @@ function App() {
           title="Login failed"
           className="SmallNotification"
         >
-          <span>Invalid Login Credentials. &nbsp;&nbsp;Please try again!</span>
+          <span>Invalid Login Credentials. Please try again!</span>
         </p>
         <Button
           kind="secondary"
@@ -117,16 +117,21 @@ function App() {
             <li className="NavList">
               <a
                 href="#form"
-                className="NavButton"
-                onClick={() =>
+                className={
+                  lastClicked == "form"
+                    ? "NavButton ActiveNavButton"
+                    : "NavButton"
+                }
+                onClick={() => {
                   setCurrentPage(
                     <CTForm
                       className="OverallForm"
                       dataMemory={dataMemory}
                       setDataMemory={setDataMemory}
                     />
-                  )
-                }
+                  );
+                  setLastClicked("form");
+                }}
               >
                 Form Page
               </a>
@@ -134,16 +139,21 @@ function App() {
             <li className="NavList">
               <a
                 href="#info"
-                className="NavButton"
-                onClick={() =>
+                className={
+                  lastClicked == "info"
+                    ? "NavButton ActiveNavButton"
+                    : "NavButton"
+                }
+                onClick={() => {
                   setCurrentPage(
                     <Info
                       className="OverallForm"
                       dataMemory={dataMemory}
                       setDataMemory={setDataMemory}
                     />
-                  )
-                }
+                  );
+                  setLastClicked("info");
+                }}
               >
                 Info Page
               </a>
@@ -151,10 +161,15 @@ function App() {
             <li className="NavList">
               <a
                 href="#admin"
-                className="NavButton"
-                onClick={() =>
-                  setCurrentPage(loggedIn ? adminLoggedIn : adminLoginForm)
+                className={
+                  lastClicked == "admin"
+                    ? "NavButton ActiveNavButton"
+                    : "NavButton"
                 }
+                onClick={() => {
+                  setCurrentPage(loggedIn ? adminLoggedIn : adminLoginForm);
+                  setLastClicked("admin");
+                }}
               >
                 Admin Page
               </a>
