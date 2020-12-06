@@ -98,12 +98,12 @@ const ReportTable = (props) => {
                 <TableContainer
                 title="DataTable"
                 description="With batch actions"
-                {...getTableContainerProps()}>
-                <TableToolbar {...getToolbarProps()}>
+                {...getTableProps()}>
+                <TableToolbar>
                     <TableBatchActions {...getBatchActionProps()}>
                         <TableBatchAction
                             tabIndex={getBatchActionProps().shouldShowBatchActions ? 0 : -1}
-                            onClick={props.setVerify(selectedRows)}>
+                            >
                             Verify
                         </TableBatchAction>
                     </TableBatchActions>

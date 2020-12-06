@@ -81,10 +81,10 @@ const SelfInput = (props) => {
       selectedValues.symptoms = getCheckedValuesArray();
       selectedValues.exposure = exposureStatus;
     }
-    console.log(selectedValues);
-    let res = props.dataMemory.push(selectedValues);
+    let res = props.dataMemory;
+    res.push(selectedValues);
     props.setDataMemory(res);
-    document.getElementById("submitLogin").disabled = false;
+    document.getElementById("submitID").disabled = false;
     props.completeSubmit(true);
   };
   return (
