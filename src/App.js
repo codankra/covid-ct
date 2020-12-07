@@ -203,7 +203,9 @@ function App() {
           </ul>
         </nav>
       </header>
+      <div role="main">
       {currentPage}
+      </div>
     </div>
   );
 }

@@ -98,6 +98,7 @@ const SelfInput = (props) => {
           invalidText="Please enter your first and last name."
           labelText="Full Name"
           placeholder="Annie Pearson"
+          aria-label="Full Name"
           required
         />
       </FormGroup>
@@ -107,6 +108,7 @@ const SelfInput = (props) => {
           id="cwid"
           invalidText="ID is required."
           labelText="Campus ID (CWID or Employee ID)"
+          aria-label="Campus Wide ID"
           required
         />
       </FormGroup>
@@ -119,6 +121,7 @@ const SelfInput = (props) => {
             placeholder="mm/dd/yyyy"
             labelText="When were you last on campus?"
             type="text"
+            aria-label="Date you were last on campus"
             required
           />
         </DatePicker>
@@ -130,11 +133,12 @@ const SelfInput = (props) => {
           id="department"
           invalidText="Please select your status."
           labelText="Status"
+          aria-label="Student Status"
         >
-          <SelectItem text="Student" value="Student" />
-          <SelectItem text="Faculty/Staff" value="Faculty/Staff" />
-          <SelectItem text="Guest" value="Guest" />
-          <SelectItem text="Other" value="Other" />
+          <SelectItem text="Student" value="Student" aria-label="I am a student"/>
+          <SelectItem text="Faculty/Staff" value="Faculty/Staff" aria-label="I am faculty/staff"/>
+          <SelectItem text="Guest" value="Guest" aria-label="I am a guest"/>
+          <SelectItem text="Other" value="Other" aria-label="I am other"/>
         </Select>
       </FormGroup>
       {/* Test */}
@@ -147,22 +151,26 @@ const SelfInput = (props) => {
           name="testStatus"
           invalidText="Enter test status."
           valueSelected="No"
+          aria-label="COVID-19 Test Status"
           onChange={() => determineTestStatus()}
         >
           <RadioButton id="radio-01" labelText="No" value="No" />
           <RadioButton
             id="radio-02"
             labelText="Yes - Waiting on results"
+            aria-label="Yes I have been tested, I am waiting for my results"
             value="wait"
           />
           <RadioButton
             id="radio-03"
             labelText="Yes - Positive"
+            aria-label="Yess I have been tested, I tested positive"
             value="positive"
           />
           <RadioButton
             id="radio-04"
             labelText="Yes - Negative"
+            aria-label="Yes I have been tested, I tested negative"
             value="negative"
           />
         </RadioButtonGroup>
@@ -179,16 +187,19 @@ const SelfInput = (props) => {
               name="testType"
               id="testType"
               valueSelected="Antibody"
+              aria-label="COVID-19 Test Type"
               onChange={() => determineTestType()}
             >
               <RadioButton
                 id="radio-11"
                 labelText="Antibody"
+                aria-label="I took an antibody test"
                 value="Antibody"
               />
               <RadioButton
                 id="radio-12"
                 labelText="Active Infection"
+                aria-label="I took an active infection test"
                 value="Active Infection"
               />
             </RadioButtonGroup>
@@ -202,6 +213,7 @@ const SelfInput = (props) => {
                   id="test-when"
                   placeholder="mm/dd/yyyy"
                   labelText="When did last get tested?"
+                  aria-label="Date of last test"
                   type="text"
                   required
                 />
