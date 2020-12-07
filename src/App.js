@@ -39,9 +39,9 @@ const initialData = [
 function App() {
   const [dataMemory, setDataMemory] = useState(initialData); //used as persistent memory for for dummy data and form entry data
   const [loggedIn, setLoggedIn] = useState(false);
-  const [lastClicked, setLastClicked] = useState("form");
+  const [lastClicked, setLastClicked] = useState("info");
   const [currentPage, setCurrentPage] = useState(
-    <CTForm
+    <Info
       className="OverallForm"
       dataMemory={dataMemory}
       setDataMemory={setDataMemory}
