@@ -43,7 +43,7 @@ const InfoPage = (props) => {
             <br/>
             <br/>
             <h2 className="SectionHeader">Verified Cases On-Campus</h2>
-            <ReportTable setVerify={undefined} data={props.dataMemory} />
+            <ReportTable setVerify={undefined} dataMemory={props.dataMemory} onAdminPage={false}/>
       </div>
     </div>
   );

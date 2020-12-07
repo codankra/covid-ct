@@ -9,21 +9,35 @@ const initialData = [
   {
     additional: "Asthmatic",
     cwid: "123-45-6789",
-    id: "123-45-6789",
     exposure: "No",
     fullname: "Annie Pearson",
     location: "11/30/2020",
     status: "Student",
     symptoms: ["Cold/Cough"],
-    testDate: "",
+    testDate: "12/01/2020",
     testInfo: "Antibody",
     testStatus: "wait",
+    verified: true,
+    id: 0,
+  },
+  {
+    additional: "",
+    cwid: "987-65-4321",
+    exposure: "Yes",
+    fullname: "Peter Russo",
+    location: "11/25/2020",
+    status: "Guest",
+    symptoms: ["Sore throat"],
+    testDate: "12/03/2020",
+    testInfo: "Active Infection",
+    testStatus: "wait",
+    verified: false,
+    id: 1,
   },
 ];
 
 function App() {
   const [dataMemory, setDataMemory] = useState(initialData); //used as persistent memory for for dummy data and form entry data
-  const [adminVerifiedMemory, setAdminVerifiedMemory] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [lastClicked, setLastClicked] = useState("form");
   const [currentPage, setCurrentPage] = useState(
@@ -36,10 +50,21 @@ function App() {
   const adminLoggedIn = (
     <Admin
       dataMemory={dataMemory}
-      adminVerifiedMemory={adminVerifiedMemory}
-      setAdminVerifiedMemory={setAdminVerifiedMemory}
+      setDataMemory={setDataMemory}
+      setCurrentPage={setCurrentPage}
+      refreshPage={refreshPage}
     />
   );
+  function refreshPage() {
+    setCurrentPage(
+      <Info
+        className="OverallForm"
+        dataMemory={dataMemory}
+        setDataMemory={setDataMemory}
+      />
+    );
+    setLastClicked("info");
+  }
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }

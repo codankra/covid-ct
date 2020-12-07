@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
+import Admin from "../AdminPage";
 import {
     DataTable,
     Table,
@@ -44,7 +45,7 @@ const headers = [
     },
     {
         key: 'location',
-        header:'Location'
+        header:'Last On-Campus'
     },
     {
         key: 'status',
@@ -53,10 +54,6 @@ const headers = [
     {
         key: 'testStatus',
         header:'Test Status'
-    },
-    {
-        key: 'additional',
-        header:'Additional Information'
     },
     {
         key: 'testInfo',
@@ -71,17 +68,21 @@ const headers = [
         header:'Symptoms'
     },
     {
-        key: 'exposure',
-        header:'Exposure'
+        key: 'verified',
+        header: 'Verified'
     }
 ]
 
-const ReportTable = (props) => {
-    console.log(props);
-    return (
-    <div>
+class ReportTable extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div>
       <div className="ReportTable">
-        <DataTable rows={props.data} headers={headers}>
+        <DataTable rows={this.props.dataMemory} headers={headers} ref={this.tableElement}>
             {({
                 rows,
                 headers,
@@ -96,29 +97,34 @@ const ReportTable = (props) => {
                 getTableContainerProps
             }) => (
                 <TableContainer
-                title="DataTable"
-                description="With batch actions"
                 {...getTableProps()}>
+                {this.props.onAdminPage ?
                 <TableToolbar>
                     <TableBatchActions {...getBatchActionProps()}>
                         <TableBatchAction
                             tabIndex={getBatchActionProps().shouldShowBatchActions ? 0 : -1}
-                            >
-                            Verify
+                            onClick={() => {
+                                let res = this.props.dataMemory;
+                                for(let key in selectedRows) {
+                                    let row = res.find(x => x.id === selectedRows[key].id);
+                                    res = res.filter(x => x.id !== selectedRows[key].id);
+                                    row.verified = true;
+                                    res.push(row);
+                                    this.props.setDataMemory(res);
+                                }
+                                alert("Successfully verified selected cases. Redirecting you to the info page to confirm.");
+                                this.props.refreshPage();
+                            }}
+                        >
+                            Verify Selected Cases
                         </TableBatchAction>
                     </TableBatchActions>
-                    <TableToolbarContent>
-                        <TableToolbarSearch
-                            defaultExpanded
-                            tabIndex={getBatchActionProps().shouldShowBatchActions ? -1 : 0}
-                            onChange={onInputChange}
-                        />
-                    </TableToolbarContent>
                 </TableToolbar>
+                : null}
                 <Table {...getTableProps()}>
                     <TableHead>
                     <TableRow>
-                        <TableSelectAll {...getSelectionProps()} />
+                        {this.props.onAdminPage ? <TableHeader>Verify Case</TableHeader> : null}
                         {headers.map((header, i) => (
                         <TableHeader key={i} {...getHeaderProps({ header })}>
                             {header.header}
@@ -128,12 +134,14 @@ const ReportTable = (props) => {
                     </TableHead>
                     <TableBody>
                     {rows.map((row, i) => (
+                        (!this.props.onAdminPage && row.cells[8].value) || this.props.onAdminPage ? (
                         <TableRow key={i} {...getRowProps({ row })}>
-                        <TableSelectRow {...getSelectionProps({ row })} />
+                        {this.props.onAdminPage ? <TableSelectRow {...getSelectionProps({ row })} /> : null}
                         {row.cells.map((cell) => (
-                            <TableCell key={cell.id}>{cell.value}</TableCell>
+                            <TableCell key={cell.id}>{typeof cell.value === "boolean" ? cell.value.toString() : cell.value}</TableCell>
                         ))}
                         </TableRow>
+                        ) : null
                     ))}
                     </TableBody>
                 </Table>
@@ -142,7 +150,8 @@ const ReportTable = (props) => {
             </DataTable>
       </div>
     </div>
-  );
-};
+        )
+    }
+}
 
 export default ReportTable;

@@ -4,7 +4,6 @@ import "./EntryForm.scss";
 
 const EntryForm = (props) => {
   const [submitted, setSubmitted] = useState(false);
-  console.log(props);
   return (
     <div>
       <div className="EntryForm">

@@ -61,7 +61,6 @@ const SelfInput = (props) => {
     let selectedValues = {
       fullname: document.getElementById("fullname").value,
       cwid: document.getElementById("cwid").value,
-      id: document.getElementById("cwid").value,
       location: document.getElementById("oncampus-when").value,
       status: document.getElementById("department").value,
       testStatus: testStatus,
@@ -70,6 +69,8 @@ const SelfInput = (props) => {
       testDate: "",
       symptoms: "",
       exposure: "",
+      verified: false,
+      id: 0,
     };
     if (testStatus !== "No") {
       selectedValues.testInfo = testType;
@@ -81,6 +82,7 @@ const SelfInput = (props) => {
       selectedValues.symptoms = getCheckedValuesArray();
       selectedValues.exposure = exposureStatus;
     }
+    selectedValues.id = props.dataMemory.length;
     let res = props.dataMemory;
     res.push(selectedValues);
     props.setDataMemory(res);
